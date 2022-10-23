@@ -1,0 +1,56 @@
+<template>
+
+    <lightning-input label="SObject" name="sobj" value={sobj} onchange={handleChange}></lightning-input>
+    <lightning-input label="Filter" name="filter" value={filter} onchange={handleChange}></lightning-input>
+    <lightning-input label="Num of rows" name="num" value={num} onchange={handleChange}></lightning-input>
+
+    <lightning-button label="Start" title="Start perf test" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+
+    <template if:true={results}>
+        <div class="slds-form-element slds-form-element_readonly">
+            <span class="slds-form-element__label">Number of runs</span>
+            <div class="slds-form-element__control">
+                <div class="slds-form-element__static">{results.runs}</div>
+            </div>
+        </div>
+        <div class="slds-form-element slds-form-element_readonly">
+            <span class="slds-form-element__label">Counted runs</span>
+            <div class="slds-form-element__control">
+                <div class="slds-form-element__static">{results.counted}</div>
+            </div>
+        </div>
+        <div class="slds-form-element slds-form-element_readonly">
+            <span class="slds-form-element__label">Coefficient of Variation</span>
+            <div class="slds-form-element__control">
+                <div class="slds-form-element__static">{results.cv}</div>
+            </div>
+        </div>
+        <div class="slds-form-element slds-form-element_readonly">
+            <span class="slds-form-element__label">Mean</span>
+            <div class="slds-form-element__control">
+                <div class="slds-form-element__static">{results.mean}</div>
+            </div>
+        </div>
+        <div class="slds-form-element slds-form-element_readonly">
+            <span class="slds-form-element__label">Last run</span>
+            <div class="slds-form-element__control">
+                <div class="slds-form-element__static">{results.lastrun}</div>
+            </div>
+        </div>
+        <div class="slds-form-element slds-form-element_readonly">
+            <span class="slds-form-element__label">raw</span>
+            <div class="slds-form-element__control">
+                <div class="slds-form-element__static">{results.data}</div>
+            </div>
+        </div>
+    </template>
+    <template if:true={error}>
+        <div class="slds-form-element__control">ERRORS:</div>
+        <template for:each={errorMessages} for:item="message">
+            <p class="slds-text-body_regular" key={message}>
+                {message}
+            </p>
+        </template>
+    </template>
+
+</template>
